@@ -43,5 +43,15 @@ module.exports = function(environment) {
 
   }
 
+  ENV.contentSecurityPolicy = {
+    'default-src': "'none'",
+    'script-src': "'self' 'unsafe-eval' *.googleapis.com maps.gstatic.com",
+    'font-src': "'self' fonts.gstatic.com",
+    'connect-src': "'self' maps.gstatic.com",
+    'img-src': "'self' data: *.googleapis.com maps.gstatic.com csi.gstatic.com",
+    'style-src': "'self' 'unsafe-inline' fonts.googleapis.com maps.gstatic.com"
+  };
+
+
   return ENV;
 };
