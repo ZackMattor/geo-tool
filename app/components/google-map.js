@@ -6,6 +6,7 @@ export default Ember.Component.extend({
   currentId: 0,
 
   circles: [],
+  markers: [],
 
   map: null,
   classNames: ['map-object'],
@@ -44,6 +45,8 @@ export default Ember.Component.extend({
       drawingManager.addListener('circlecomplete', this._circleCreated.bind(this));
 
       drawingManager.setMap(map);
+
+      this._renderMarkers();
     }.bind(this));
   },
 
@@ -65,6 +68,16 @@ export default Ember.Component.extend({
 
   _circleUpdated: function() {
     console.log('Got an update for circle id: ' + this.circle.id);
+  },
+
+  _renderMarkers: function() {
+    for(var i=0; i<this.get('markers.length'); i++) {
+      var marker = new google.maps.Marker({
+      position: this.get('markers')[i],
+      map: this.get('map'),
+      title: 'Hello World!'
+      });
+    }
   },
 
   _getLocation: function() {
